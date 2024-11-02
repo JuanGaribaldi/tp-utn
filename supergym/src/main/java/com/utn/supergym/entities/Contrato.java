@@ -2,6 +2,7 @@ package com.utn.supergym.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,20 +15,17 @@ public class Contrato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Cliente cliente;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Pase pase;
 
     @Column
+    @CreationTimestamp
     private LocalDateTime fechaAlta;
 
     @Column
     private BigDecimal monto;
-
-    private void pagarMes() {
-        //TODO: implementar
-    }
 
 }

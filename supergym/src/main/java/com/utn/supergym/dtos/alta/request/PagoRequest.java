@@ -1,6 +1,5 @@
-package com.utn.supergym.dtos.request;
+package com.utn.supergym.dtos.alta.request;
 
-import com.utn.supergym.entities.Contrato;
 import com.utn.supergym.entities.Pago;
 import com.utn.supergym.utils.DateUtil;
 import lombok.Builder;

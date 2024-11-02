@@ -1,4 +1,4 @@
-package com.utn.supergym.dtos.request;
+package com.utn.supergym.dtos.alta.request;
 
 import com.utn.supergym.entities.Pase;
 import com.utn.supergym.entities.Producto;

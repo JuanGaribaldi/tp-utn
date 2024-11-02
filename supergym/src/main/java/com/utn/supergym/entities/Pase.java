@@ -2,6 +2,7 @@ package com.utn.supergym.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,13 +18,15 @@ public class Pase {
     @Column
     private TipoPase tipo;
 
-    @Column
+    @ElementCollection
     private List<Producto> productosAsociados;
 
     @Column
+    @CreationTimestamp
     private LocalDateTime fechaEmision;
 
     @Column
+    @CreationTimestamp
     private LocalDateTime fechaProximoPago;
 
     @ElementCollection

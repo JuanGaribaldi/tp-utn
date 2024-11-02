@@ -1,6 +1,6 @@
 package com.utn.supergym.controllers;
 
-import com.utn.supergym.dtos.request.ClienteRequest;
+import com.utn.supergym.dtos.alta.request.ClienteRequest;
 import com.utn.supergym.services.ClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +19,7 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<Void> darDeAltaCliente(@RequestBody ClienteRequest cliente) {
+        //TODO: validar existencia cliente. Si existe cliente, debe fallar el alta.
         clienteService.darDeAltaCliente(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

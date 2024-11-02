@@ -1,8 +1,12 @@
 package com.utn.supergym.utils;
 
+import io.micrometer.common.util.StringUtils;
+import lombok.experimental.UtilityClass;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@UtilityClass
 public class DateUtil {
 
     public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
@@ -13,20 +17,23 @@ public class DateUtil {
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(TIME_PATTERN);
 
-    public static LocalDateTime parseLocalDateTime(String fechaPago) {
-        return LocalDateTime.parse(fechaPago, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+    public static LocalDateTime parseLocalDateTime(String fecha) {
+        if (StringUtils.isEmpty(fecha)) {
+            return null;
+        }
+        return LocalDateTime.parse(fecha, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
     }
 
-    public static String toDateTimeString(LocalDateTime fechaPago) {
-        return DATE_TIME_FORMATTER.format(fechaPago);
+    public static String toDateTimeString(LocalDateTime fecha) {
+        return DATE_TIME_FORMATTER.format(fecha);
     }
 
-    public static String toDateString(LocalDateTime fechaPago) {
-        return DATE_FORMATTER.format(fechaPago);
+    public static String toDateString(LocalDateTime fecha) {
+        return DATE_FORMATTER.format(fecha);
     }
 
-    public static String toTimeString(LocalDateTime fechaPago) {
-        return TIME_FORMATTER.format(fechaPago);
+    public static String toTimeString(LocalDateTime fecha) {
+        return TIME_FORMATTER.format(fecha);
     }
 
 }

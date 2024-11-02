@@ -1,6 +1,6 @@
 package com.utn.supergym.services;
 
-import com.utn.supergym.dtos.request.ClienteRequest;
+import com.utn.supergym.dtos.alta.request.ClienteRequest;
 import com.utn.supergym.entities.Cliente;
 import com.utn.supergym.repositories.ClienteRepository;
 import lombok.RequiredArgsConstructor;

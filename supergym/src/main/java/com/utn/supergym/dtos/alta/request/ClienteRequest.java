@@ -1,4 +1,4 @@
-package com.utn.supergym.dtos.request;
+package com.utn.supergym.dtos.alta.request;
 
 import com.utn.supergym.entities.Cliente;
 import com.utn.supergym.entities.EstadoUsuario;
@@ -17,7 +17,7 @@ public class ClienteRequest {
         cliente.setNombre(this.nombre);
         cliente.setApellido(this.apellido);
         cliente.setDni(this.dni);
-        cliente.setEstadoUsuario(EstadoUsuario.HABILITADO);
+        cliente.setEstadoUsuario(EstadoUsuario.CREADO);
         return cliente;
     }
 }
