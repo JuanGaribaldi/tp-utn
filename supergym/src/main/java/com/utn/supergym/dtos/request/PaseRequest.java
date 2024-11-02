@@ -3,9 +3,11 @@ package com.utn.supergym.dtos.request;
 import com.utn.supergym.entities.Pase;
 import com.utn.supergym.entities.Producto;
 import com.utn.supergym.entities.TipoPase;
+import com.utn.supergym.utils.DateUtil;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -21,8 +23,9 @@ public class PaseRequest {
         Pase pase = new Pase();
         pase.setTipo(TipoPase.valueOf(tipo));
         pase.setProductosAsociados(toProductos());
-        pase.setFechaEmision(null); //TODO
-        pase.setFechaProximoPago(null); //TODO
+        LocalDateTime now = LocalDateTime.now();
+        pase.setFechaEmision(fechaEmision != null ? DateUtil.parseLocalDateTime(fechaEmision) : null); //TODO
+        pase.setFechaProximoPago(fechaProximoPago != null ? DateUtil.parseLocalDateTime(fechaProximoPago) : null); //TODO
         return pase;
     }
 
