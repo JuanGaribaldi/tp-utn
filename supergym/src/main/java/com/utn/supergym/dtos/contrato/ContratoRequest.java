@@ -1,4 +1,4 @@
-package com.utn.supergym.dtos.alta.request;
+package com.utn.supergym.dtos.contrato;
 
 import com.utn.supergym.entities.Contrato;
 import jakarta.validation.constraints.NotEmpty;

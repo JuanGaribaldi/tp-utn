@@ -1,5 +1,6 @@
-package com.utn.supergym.dtos.alta.response;
+package com.utn.supergym.dtos.pase;
 
+import com.utn.supergym.dtos.pagos.PagoResponse;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,5 +15,4 @@ public class PaseResponse {
     private String fechaEmision;
     private String fechaProximoPago;
     private List<PagoResponse> pagosRealizados;
-
 }

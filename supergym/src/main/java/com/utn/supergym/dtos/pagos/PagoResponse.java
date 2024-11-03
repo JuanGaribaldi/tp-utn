@@ -1,4 +1,4 @@
-package com.utn.supergym.dtos.alta.response;
+package com.utn.supergym.dtos.pagos;
 
 import lombok.Builder;
 import lombok.Data;

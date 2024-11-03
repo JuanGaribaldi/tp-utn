@@ -1,14 +1,14 @@
 package com.utn.supergym.controllers;
 
-import com.utn.supergym.dtos.alta.request.ClienteRequest;
+import com.utn.supergym.dtos.cliente.ClienteAltaRequest;
+import com.utn.supergym.dtos.cliente.ClienteAltaResponse;
+import com.utn.supergym.dtos.cliente.ClienteConsultaResponse;
+import com.utn.supergym.exceptions.AltaException;
 import com.utn.supergym.services.ClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,11 +18,15 @@ public class ClienteController {
     private final ClienteService clienteService;
 
     @PostMapping
-    public ResponseEntity<Void> darDeAltaCliente(@RequestBody ClienteRequest cliente) {
-        //TODO: validar existencia cliente. Si existe cliente, debe fallar el alta.
-        clienteService.darDeAltaCliente(cliente);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<ClienteAltaResponse> darDeAltaCliente(@RequestBody ClienteAltaRequest cliente)
+            throws AltaException {
+        ClienteAltaResponse response = clienteService.darDeAltaCliente(cliente);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteConsultaResponse> consultarCliente(@PathVariable("id") Long idCliente) {
+        ClienteConsultaResponse response = clienteService.consultarCliente(idCliente);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }

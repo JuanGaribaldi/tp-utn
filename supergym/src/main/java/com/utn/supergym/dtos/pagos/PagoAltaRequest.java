@@ -1,4 +1,4 @@
-package com.utn.supergym.dtos.alta.request;
+package com.utn.supergym.dtos.pagos;
 
 import com.utn.supergym.entities.Pago;
 import com.utn.supergym.utils.DateUtil;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class PagoRequest {
+public class PagoAltaRequest {
     private Long idPase;
     private String fechaPago;
     private BigDecimal montoPago;
@@ -22,5 +22,4 @@ public class PagoRequest {
         pago.setMontoPago(montoPago);
         return pago;
     }
-
 }

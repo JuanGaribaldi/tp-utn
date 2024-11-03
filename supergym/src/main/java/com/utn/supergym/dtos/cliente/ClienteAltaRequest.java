@@ -1,15 +1,19 @@
-package com.utn.supergym.dtos.alta.request;
+package com.utn.supergym.dtos.cliente;
 
 import com.utn.supergym.entities.Cliente;
 import com.utn.supergym.entities.EstadoUsuario;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class ClienteRequest {
+public class ClienteAltaRequest {
+    @NotEmpty
     private String nombre;
+    @NotEmpty
     private String apellido;
+    @NotEmpty
     private Long dni;
 
     public Cliente toCliente() {

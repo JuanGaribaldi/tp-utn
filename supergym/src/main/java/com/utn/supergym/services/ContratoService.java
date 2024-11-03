@@ -1,6 +1,6 @@
 package com.utn.supergym.services;
 
-import com.utn.supergym.dtos.alta.request.ContratoRequest;
+import com.utn.supergym.dtos.contrato.ContratoRequest;
 import com.utn.supergym.entities.Cliente;
 import com.utn.supergym.entities.Contrato;
 import com.utn.supergym.entities.Pase;

@@ -1,6 +1,6 @@
 package com.utn.supergym.controllers;
 
-import com.utn.supergym.dtos.alta.request.ContratoRequest;
+import com.utn.supergym.dtos.contrato.ContratoRequest;
 import com.utn.supergym.entities.Producto;
 import com.utn.supergym.entities.TipoPase;
 import com.utn.supergym.exceptions.AltaException;
@@ -37,7 +37,7 @@ public class ContratoController {
         }
         if (TipoPase.BLACK.toString().equalsIgnoreCase(contratoRequest.getTipoPase())) {
             List<String> productos = contratoRequest.getProductos();
-            if(CollectionUtils.isEmpty(productos)) {
+            if (CollectionUtils.isEmpty(productos)) {
                 throw new BadRequestException("Si el tipo de pase es Black, debe informar productos a asociar");
             }
             if (!Producto.sonProductosValidos(productos)) {
@@ -47,8 +47,5 @@ public class ContratoController {
                 throw new BadRequestException("Si elige tipo de pase Black, debe informar dos Servicios");
             }
         }
-
     }
-
-
 }

@@ -1,4 +1,4 @@
-package com.utn.supergym.configuration;
+package com.utn.supergym.configuration.security;
 
 import java.util.Collection;
 import java.util.List;
