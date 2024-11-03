@@ -23,6 +23,7 @@ public class Pase {
     private TipoPase tipo;
 
     @ElementCollection
+    @Enumerated(EnumType.STRING)
     private List<Producto> productosAsociados;
 
     @Column

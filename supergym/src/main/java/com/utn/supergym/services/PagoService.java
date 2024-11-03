@@ -43,8 +43,6 @@ public class PagoService {
         }
 
         paseEntity.setFechaProximoPago(paseEntity.getFechaProximoPago().plusMonths(1));
-        //TODO: crear consulta contratos y consulta pase PARA VER LA LISTA DE PAGOS.
         pagoRepository.save(pago);
-        paseRepository.save(paseEntity);
     }
 }

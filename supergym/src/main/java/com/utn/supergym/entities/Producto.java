@@ -8,8 +8,7 @@ import java.util.List;
 public enum Producto {
     MUSCULACION,
     CLASES,
-    PILETA,
-    ;
+    PILETA;
 
     public static boolean sonProductosValidos(@NotEmpty List<String> productos) {
         return productos.stream().allMatch(Producto::esProductoValido);
