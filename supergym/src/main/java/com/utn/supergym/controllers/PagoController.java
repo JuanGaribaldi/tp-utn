@@ -28,6 +28,9 @@ public class PagoController {
     }
 
     private void validarBodyContrato(PagoAltaRequest pagoAltaRequest) throws BadRequestException {
+        if (null == pagoAltaRequest.getIdPase()) {
+            throw new BadRequestException("Se debe informar ID de Pase");
+        }
         if (null == pagoAltaRequest.getMontoPago()) {
             throw new BadRequestException("Se debe informar Monto Pago");
         }

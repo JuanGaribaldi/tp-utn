@@ -3,7 +3,7 @@ package com.utn.supergym.dtos.cliente;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.utn.supergym.dtos.contrato.ContratoResponse;
+import com.utn.supergym.dtos.contrato.ContratoConsultaResponse;
 import com.utn.supergym.entities.Cliente;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +17,7 @@ public class ClienteConsultaResponse {
     private String nombre;
     private String apellido;
     private Long dni;
-    private ContratoResponse contrato;
+    private ContratoConsultaResponse contrato;
     private String estadoUsuario;
 
     public static ClienteConsultaResponse from(Cliente cliente) {

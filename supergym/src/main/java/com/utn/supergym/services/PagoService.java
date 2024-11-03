@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -27,20 +28,23 @@ public class PagoService {
         Pago pago = pagoAltaRequest.toPago();
 
         Optional<Pase> pase = paseRepository.findById(pagoAltaRequest.getIdPase());
-
         if (pase.isEmpty()) {
             throw new AltaException("Error en alta de Pago : no se encontró Pase para el ID de Cliente informado");
         }
         Pase paseEntity = pase.get();
 
-        pago.setFechaPago(paseEntity.getFechaProximoPago().plusMonths(1));
+        if (null == pago.getFechaPago()) {
+            pago.setFechaPago(LocalDateTime.now());
+        }
         paseEntity.addPagoRealizado(pago);
 
         if (paseEntity.getPagosRealizados().size() == 1) {
             paseEntity.getCliente().setEstadoUsuario(EstadoUsuario.HABILITADO);
         }
 
+        paseEntity.setFechaProximoPago(paseEntity.getFechaProximoPago().plusMonths(1));
         //TODO: crear consulta contratos y consulta pase PARA VER LA LISTA DE PAGOS.
         pagoRepository.save(pago);
+        paseRepository.save(paseEntity);
     }
 }

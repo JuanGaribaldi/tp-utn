@@ -1,6 +1,7 @@
 package com.utn.supergym.services;
 
 import com.utn.supergym.dtos.contrato.ContratoAltaRequest;
+import com.utn.supergym.dtos.contrato.ContratoConsultaResponse;
 import com.utn.supergym.entities.Cliente;
 import com.utn.supergym.entities.Contrato;
 import com.utn.supergym.entities.Pase;
@@ -39,5 +40,15 @@ public class ContratoService {
         } catch (NoSuchElementException e) {
             throw new AltaException("Error en alta contrato: " + e.getMessage());
         }
+    }
+
+    public ContratoConsultaResponse consultarContrato(Long idContrato) throws NoSuchElementException {
+        Optional<Contrato> contrato = contratoRepository.findById(idContrato);
+        if (contrato.isEmpty()) {
+            throw new NoSuchElementException("No existe el contrato solicitado.");
+        }
+
+        Contrato contratoEntity = contrato.get();
+        return ContratoConsultaResponse.from(contratoEntity);
     }
 }

@@ -25,14 +25,26 @@ public class DateUtil {
     }
 
     public static String toDateTimeString(LocalDateTime fecha) {
+        if (null == fecha) {
+            return null;
+        }
+
         return DATE_TIME_FORMATTER.format(fecha);
     }
 
     public static String toDateString(LocalDateTime fecha) {
+        if (null == fecha) {
+            return null;
+        }
+
         return DATE_FORMATTER.format(fecha);
     }
 
     public static String toTimeString(LocalDateTime fecha) {
+        if (null == fecha) {
+            return null;
+        }
+
         return TIME_FORMATTER.format(fecha);
     }
 
