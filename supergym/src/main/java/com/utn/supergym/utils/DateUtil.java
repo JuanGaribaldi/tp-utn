@@ -21,7 +21,7 @@ public class DateUtil {
         if (StringUtils.isEmpty(fecha)) {
             return null;
         }
-        return LocalDateTime.parse(fecha, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        return LocalDateTime.parse(fecha, DATE_TIME_FORMATTER);
     }
 
     public static String toDateTimeString(LocalDateTime fecha) {

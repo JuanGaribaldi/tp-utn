@@ -40,6 +40,7 @@ public class PagoService {
             paseEntity.getCliente().setEstadoUsuario(EstadoUsuario.HABILITADO);
         }
 
-        paseRepository.save(paseEntity);
+        //TODO: crear consulta contratos y consulta pase PARA VER LA LISTA DE PAGOS.
+        pagoRepository.save(pago);
     }
 }
