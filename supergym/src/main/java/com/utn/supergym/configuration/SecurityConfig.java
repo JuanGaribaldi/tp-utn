@@ -24,16 +24,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 @Slf4j
 public class SecurityConfig {
-//
-//    @Autowired
-//    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    private MyUserDetails myUserDetails;
+    private UserGimnasioDetails userGimnasioDetails;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        //TODO: Configurar para filtrar requests no autenticadas
         log.info("AUTENTICANDO");
         http.cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
@@ -47,35 +43,20 @@ public class SecurityConfig {
         log.info("HTTP -> {}", http);
         return http.build();
     }
-//
-//    @Bean
-//	public UserDetailsService userDetailsService() {
-//	    return userDetailsService;
-//    }
-//
+
     @Bean
-	public PasswordEncoder passwordEncoder() {
-	    return new BCryptPasswordEncoder();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-        UserDetails user = User.withUsername(myUserDetails.getUsername())
-                .password(encoder.encode(myUserDetails.getPassword()))
+        UserDetails user = User.withUsername(userGimnasioDetails.getUsername())
+                .password(encoder.encode(userGimnasioDetails.getPassword()))
                 .roles("USER")
                 .build();
 
         return new InMemoryUserDetailsManager(user);
     }
-//
-//
-//    @Bean
-//	public DaoAuthenticationProvider authenticationProvider() {
-//	    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-//	    authProvider.setUserDetailsService(userDetailsService());
-//		authProvider.setPasswordEncoder(passwordEncoder());
-//
-//		return authProvider;
-//	}
 
 }

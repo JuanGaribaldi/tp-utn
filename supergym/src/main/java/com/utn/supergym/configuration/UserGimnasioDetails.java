@@ -1,6 +1,5 @@
 package com.utn.supergym.configuration;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,16 +12,13 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-public class MyUserDetails implements UserDetails {
+public class UserGimnasioDetails implements UserDetails {
 
     @Value("${supergym.user}")
     private String usuario;
 
     @Value("${supergym.pass}")
     private String password;
-
-    public MyUserDetails() {
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
