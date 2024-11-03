@@ -1,5 +1,7 @@
 package com.utn.supergym.dtos.contrato;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.utn.supergym.entities.Contrato;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
@@ -10,7 +12,8 @@ import java.util.List;
 
 @Data
 @Builder
-public class ContratoRequest {
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+public class ContratoAltaRequest {
     @NotEmpty
     private Long idCliente;
     @NotEmpty

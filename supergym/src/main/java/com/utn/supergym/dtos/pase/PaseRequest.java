@@ -8,7 +8,6 @@ import com.utn.supergym.utils.DateUtil;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -24,7 +23,6 @@ public class PaseRequest {
         Pase pase = new Pase();
         pase.setTipo(TipoPase.valueOf(tipo));
         pase.setProductosAsociados(toProductos());
-        LocalDateTime now = LocalDateTime.now();
         pase.setFechaEmision(fechaEmision != null ? DateUtil.parseLocalDateTime(fechaEmision) : null);
         pase.setFechaProximoPago(fechaProximoPago != null ? DateUtil.parseLocalDateTime(fechaProximoPago) : null);
         return pase;

@@ -19,5 +19,6 @@ public class Cliente {
     @OneToOne
     private Contrato contrato;
     @Column
+    @Enumerated(EnumType.STRING)
     private EstadoUsuario estadoUsuario;
 }

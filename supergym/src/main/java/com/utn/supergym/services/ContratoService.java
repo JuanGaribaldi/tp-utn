@@ -1,6 +1,6 @@
 package com.utn.supergym.services;
 
-import com.utn.supergym.dtos.contrato.ContratoRequest;
+import com.utn.supergym.dtos.contrato.ContratoAltaRequest;
 import com.utn.supergym.entities.Cliente;
 import com.utn.supergym.entities.Contrato;
 import com.utn.supergym.entities.Pase;
@@ -20,16 +20,21 @@ public class ContratoService {
     private final ClienteRepository clienteRepository;
     private final PaseService paseService;
 
-    public void darDeAltaContrato(ContratoRequest contratoRequest) throws AltaException {
+    public void darDeAltaContrato(ContratoAltaRequest contratoAltaRequest) throws AltaException {
         try {
-            Optional<Cliente> cliente = clienteRepository.findById(contratoRequest.getIdCliente());
+            Optional<Cliente> cliente = clienteRepository.findById(contratoAltaRequest.getIdCliente());
             if (cliente.isEmpty()) {
                 throw new NoSuchElementException("No existe el cliente solicitado.");
             }
-            Pase pase = paseService.configurarPase(contratoRequest.getTipoPase(), contratoRequest.getProductos());
-            Contrato contrato = contratoRequest.toContrato();
+            Pase pase = paseService.configurarPase(contratoAltaRequest.getTipoPase(), contratoAltaRequest.getProductos());
+            pase.setCliente(cliente.get());
+
+            Contrato contrato = contratoAltaRequest.toContrato();
             contrato.setCliente(cliente.get());
             contrato.setPase(pase);
+
+            cliente.get().setContrato(contrato);
+
             contratoRepository.save(contrato);
         } catch (NoSuchElementException e) {
             throw new AltaException("Error en alta contrato: " + e.getMessage());

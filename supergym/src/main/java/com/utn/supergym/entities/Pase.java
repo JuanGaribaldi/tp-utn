@@ -15,7 +15,11 @@ public class Pase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Cliente cliente;
+
     @Column
+    @Enumerated(EnumType.STRING)
     private TipoPase tipo;
 
     @ElementCollection

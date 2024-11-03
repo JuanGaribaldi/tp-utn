@@ -1,6 +1,7 @@
 package com.utn.supergym.services;
 
 import com.utn.supergym.dtos.pagos.PagoAltaRequest;
+import com.utn.supergym.entities.EstadoUsuario;
 import com.utn.supergym.entities.Pago;
 import com.utn.supergym.entities.Pase;
 import com.utn.supergym.exceptions.AltaException;
@@ -22,7 +23,7 @@ public class PagoService {
     @Autowired
     private PaseRepository paseRepository;
 
-    public Pago darDeAltaPago(PagoAltaRequest pagoAltaRequest) throws AltaException {
+    public void darDeAltaPago(PagoAltaRequest pagoAltaRequest) throws AltaException {
         Pago pago = pagoAltaRequest.toPago();
 
         Optional<Pase> pase = paseRepository.findById(pagoAltaRequest.getIdPase());
@@ -35,8 +36,10 @@ public class PagoService {
         pago.setFechaPago(paseEntity.getFechaProximoPago().plusMonths(1));
         paseEntity.addPagoRealizado(pago);
 
-        paseRepository.save(paseEntity);
+        if (paseEntity.getPagosRealizados().size() == 1) {
+            paseEntity.getCliente().setEstadoUsuario(EstadoUsuario.HABILITADO);
+        }
 
-        return pago;
+        paseRepository.save(paseEntity);
     }
 }

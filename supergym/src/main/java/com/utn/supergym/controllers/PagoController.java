@@ -20,7 +20,8 @@ public class PagoController {
     private final PagoService pagoService;
 
     @PostMapping
-    public ResponseEntity<Void> registrarPago(@RequestBody PagoAltaRequest pagoAltaRequest) throws AltaException, BadRequestException {
+    public ResponseEntity<Void> registrarPago(@RequestBody PagoAltaRequest pagoAltaRequest)
+            throws AltaException, BadRequestException {
         validarBodyContrato(pagoAltaRequest);
         pagoService.darDeAltaPago(pagoAltaRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();

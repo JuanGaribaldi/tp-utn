@@ -1,5 +1,7 @@
 package com.utn.supergym.dtos.cliente;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.utn.supergym.entities.Cliente;
 import com.utn.supergym.entities.EstadoUsuario;
 import jakarta.validation.constraints.NotEmpty;
@@ -8,6 +10,7 @@ import lombok.Data;
 
 @Data
 @Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ClienteAltaRequest {
     @NotEmpty
     private String nombre;

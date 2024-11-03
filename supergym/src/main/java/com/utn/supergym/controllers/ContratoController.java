@@ -1,6 +1,6 @@
 package com.utn.supergym.controllers;
 
-import com.utn.supergym.dtos.contrato.ContratoRequest;
+import com.utn.supergym.dtos.contrato.ContratoAltaRequest;
 import com.utn.supergym.entities.Producto;
 import com.utn.supergym.entities.TipoPase;
 import com.utn.supergym.exceptions.AltaException;
@@ -25,18 +25,18 @@ public class ContratoController {
     private final ContratoService contratoService;
 
     @PostMapping
-    public ResponseEntity<Void> darDeAltaContrato(@RequestBody ContratoRequest contratoRequest) throws AltaException, BadRequestException {
-        validarBodyContrato(contratoRequest);
-        contratoService.darDeAltaContrato(contratoRequest);
+    public ResponseEntity<Void> darDeAltaContrato(@RequestBody ContratoAltaRequest contratoAltaRequest) throws AltaException, BadRequestException {
+        validarBodyContrato(contratoAltaRequest);
+        contratoService.darDeAltaContrato(contratoAltaRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    private void validarBodyContrato(ContratoRequest contratoRequest) throws BadRequestException {
-        if (!TipoPase.esTipoPaseValido(contratoRequest.getTipoPase())) {
+    private void validarBodyContrato(ContratoAltaRequest contratoAltaRequest) throws BadRequestException {
+        if (!TipoPase.esTipoPaseValido(contratoAltaRequest.getTipoPase())) {
             throw new BadRequestException("Tipo Pase inválido");
         }
-        if (TipoPase.BLACK.toString().equalsIgnoreCase(contratoRequest.getTipoPase())) {
-            List<String> productos = contratoRequest.getProductos();
+        if (TipoPase.BLACK.toString().equalsIgnoreCase(contratoAltaRequest.getTipoPase())) {
+            List<String> productos = contratoAltaRequest.getProductos();
             if (CollectionUtils.isEmpty(productos)) {
                 throw new BadRequestException("Si el tipo de pase es Black, debe informar productos a asociar");
             }

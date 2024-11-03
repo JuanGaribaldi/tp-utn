@@ -1,5 +1,7 @@
 package com.utn.supergym.dtos.pagos;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.utn.supergym.entities.Pago;
 import com.utn.supergym.utils.DateUtil;
 import lombok.Builder;
@@ -11,6 +13,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PagoAltaRequest {
     private Long idPase;
     private String fechaPago;
