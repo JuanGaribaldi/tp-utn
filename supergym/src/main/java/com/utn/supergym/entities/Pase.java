@@ -32,4 +32,8 @@ public class Pase {
     @ElementCollection
     private List<Pago> pagosRealizados;
 
+
+    public void addPagoRealizado(Pago pago) {
+        pagosRealizados.add(pago);
+    }
 }

@@ -6,18 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 
 @Data
 @Builder
 public class PagoRequest {
-    private Long id;
+    private Long idPase;
     private String fechaPago;
     private BigDecimal montoPago;
 
     public Pago toPago() {
         Pago pago = new Pago();
-        pago.setFechaPago(DateUtil.parseLocalDateTime(fechaPago));
+        pago.setFechaPago(fechaPago != null ? DateUtil.parseLocalDateTime(fechaPago) : LocalDateTime.now());
         pago.setMontoPago(montoPago);
         return pago;
     }

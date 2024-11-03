@@ -22,4 +22,10 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(ErrorGenericoDto.builder().mensaje(badRequestException.getMessage()).build());
     }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler({Exception.class})
+    public ResponseEntity<ErrorGenericoDto> handle(Exception exception) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(ErrorGenericoDto.builder().mensaje(exception.getMessage()).build());
+    }
 }
