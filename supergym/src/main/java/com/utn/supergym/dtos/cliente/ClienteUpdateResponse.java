@@ -12,7 +12,7 @@ import lombok.Data;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class  ClienteAltaResponse {
+public class ClienteUpdateResponse {
     private Long id;
     private String nombre;
     private String apellido;
@@ -20,12 +20,13 @@ public class  ClienteAltaResponse {
     private ContratoConsultaResponse contrato;
     private String estadoUsuario;
 
-    public static ClienteAltaResponse from(Cliente cliente) {
-        return ClienteAltaResponse.builder()
+    public static ClienteUpdateResponse from(Cliente cliente) {
+        return ClienteUpdateResponse.builder()
                 .id(cliente.getId())
                 .nombre(cliente.getNombre())
                 .apellido(cliente.getApellido())
                 .dni(cliente.getDni())
+                .contrato(ContratoConsultaResponse.from(cliente.getContrato()))
                 .estadoUsuario(cliente.getEstadoUsuario().name())
                 .build();
     }

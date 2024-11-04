@@ -2,6 +2,7 @@ package com.utn.supergym.configuration.handler;
 
 import com.utn.supergym.dtos.errores.ErrorGenericoDto;
 import com.utn.supergym.exceptions.AltaException;
+import com.utn.supergym.exceptions.UpdateException;
 import org.apache.coyote.BadRequestException;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ErrorGenericoDto> handle(AltaException altaException) {
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .body(ErrorGenericoDto.builder().mensaje(altaException.getMessage()).build());
+    }
+
+    @ExceptionHandler({UpdateException.class})
+    public ResponseEntity<ErrorGenericoDto> handle(UpdateException updateException) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+                .body(ErrorGenericoDto.builder().mensaje(updateException.getMessage()).build());
     }
 
     @ExceptionHandler({BadRequestException.class})

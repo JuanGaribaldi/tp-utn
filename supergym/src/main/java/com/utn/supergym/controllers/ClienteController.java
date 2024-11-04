@@ -1,11 +1,10 @@
 package com.utn.supergym.controllers;
 
-import com.utn.supergym.dtos.cliente.ClienteAltaRequest;
-import com.utn.supergym.dtos.cliente.ClienteAltaResponse;
-import com.utn.supergym.dtos.cliente.ClienteConsultaResponse;
+import com.utn.supergym.dtos.cliente.*;
 import com.utn.supergym.exceptions.AltaException;
 import com.utn.supergym.services.ClienteService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +21,13 @@ public class ClienteController {
             throws AltaException {
         ClienteAltaResponse response = clienteService.darDeAltaCliente(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PatchMapping
+    public ResponseEntity<ClienteUpdateResponse> actualizarCliente(@RequestBody ClienteUpdateRequest clienteRequest) throws BadRequestException {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(clienteService.actualizarEstado(clienteRequest));
     }
 
     @GetMapping("/{id}")

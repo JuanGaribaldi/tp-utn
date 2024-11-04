@@ -1,12 +1,12 @@
 package com.utn.supergym.services;
 
-import com.utn.supergym.dtos.cliente.ClienteAltaRequest;
-import com.utn.supergym.dtos.cliente.ClienteAltaResponse;
-import com.utn.supergym.dtos.cliente.ClienteConsultaResponse;
+import com.utn.supergym.dtos.cliente.*;
 import com.utn.supergym.entities.Cliente;
+import com.utn.supergym.entities.EstadoUsuario;
 import com.utn.supergym.exceptions.AltaException;
 import com.utn.supergym.repositories.ClienteRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -30,6 +30,23 @@ public class ClienteService {
         }
     }
 
+    private Cliente validarExistenciaYObtenerCliente(ClienteUpdateRequest clienteUpdateRequest) throws BadRequestException {
+        Long idCliente = clienteUpdateRequest.getIdCliente();
+        if (null == idCliente) {
+            throw new BadRequestException("Debe informarse el ID del cliente a actualizar estado.");
+        }
+        String estadoUsuario = clienteUpdateRequest.getEstadoUsuario();
+        if (null == estadoUsuario) {
+            throw new BadRequestException("Debe informarse el nuevo valor de EstadoUsuario.");
+        }
+
+        Optional<Cliente> clienteAValidar = clienteRepository.findById(idCliente);
+        if (clienteAValidar.isEmpty()) {
+            throw new NoSuchElementException("El cliente solicitado no existe en el sistema.");
+        }
+        return clienteAValidar.get();
+    }
+
     public ClienteConsultaResponse consultarCliente(Long idCliente) {
         Optional<Cliente> cliente = clienteRepository.findById(idCliente);
         if (cliente.isEmpty()) {
@@ -37,4 +54,13 @@ public class ClienteService {
         }
         return ClienteConsultaResponse.from(cliente.get());
     }
+
+    public ClienteUpdateResponse actualizarEstado(ClienteUpdateRequest clienteUpdateRequest) throws BadRequestException {
+        Cliente cliente = validarExistenciaYObtenerCliente(clienteUpdateRequest);
+        cliente.setEstadoUsuario(EstadoUsuario.valueOf(clienteUpdateRequest.getEstadoUsuario()));
+
+        return ClienteUpdateResponse.from(clienteRepository.save(cliente));
+    }
+
+
 }
