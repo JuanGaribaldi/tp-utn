@@ -39,12 +39,12 @@ public class ClienteService {
         }
         String estadoUsuario = clienteUpdateRequest.getEstadoUsuario();
         if (null == estadoUsuario) {
-            throw new BadRequestException("Debe informarse el nuevo valor de EstadoUsuario.");
+            throw new BadRequestException("Debe informarse el nuevo valor de estado usuario.");
         }
 
         Optional<Cliente> clienteAValidar = clienteRepository.findById(idCliente);
         if (clienteAValidar.isEmpty()) {
-            throw new NoSuchElementException("El cliente solicitado no existe en el sistema.");
+            throw new NoSuchElementException("No se encontró el cliente con id: " + idCliente);
         }
         return clienteAValidar.get();
     }
@@ -59,7 +59,7 @@ public class ClienteService {
 
     public ClienteResponse actualizarEstado(ClienteUpdateRequest clienteUpdateRequest) throws BadRequestException {
         Cliente cliente = validarExistenciaYObtenerCliente(clienteUpdateRequest);
-        cliente.setEstadoUsuario(EstadoUsuario.valueOf(clienteUpdateRequest.getEstadoUsuario()));
+        cliente.setEstadoUsuario(EstadoUsuario.toEstadoUsuario(clienteUpdateRequest.getEstadoUsuario()));
 
         return ClienteResponse.from(clienteRepository.save(cliente));
     }
