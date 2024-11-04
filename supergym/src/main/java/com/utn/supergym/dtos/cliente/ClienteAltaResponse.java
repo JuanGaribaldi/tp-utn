@@ -12,7 +12,7 @@ import lombok.Data;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class ClienteAltaResponse {
+public class  ClienteAltaResponse {
     private Long id;
     private String nombre;
     private String apellido;
