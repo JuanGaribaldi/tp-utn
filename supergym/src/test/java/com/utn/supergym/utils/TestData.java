@@ -42,6 +42,7 @@ public class TestData {
     public static final BigDecimal MONTO_PAGO = BigDecimal.TEN;
 
     //Mensajes de error
+    public static final String ERROR_EN_ALTA_CONTRATO = "Error en alta contrato: ";
     public static final String ERROR_CLIENTE_EXISTENTE = "El cliente ya existe en el sistema.";
     public static final String ERROR_CLIENTE_NO_ENCONTRADO = "No se encontró el cliente con id: " + ID;
 

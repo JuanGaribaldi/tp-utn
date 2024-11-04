@@ -25,7 +25,7 @@ public class ContratoService {
         try {
             Optional<Cliente> cliente = clienteRepository.findById(contratoAltaRequest.getIdCliente());
             if (cliente.isEmpty()) {
-                throw new NoSuchElementException("No existe el cliente solicitado.");
+                throw new NoSuchElementException("No se encontró el cliente con id: " + contratoAltaRequest.getIdCliente());
             }
             Pase pase = paseService.configurarPase(contratoAltaRequest.getTipoPase(), contratoAltaRequest.getProductos());
             pase.setCliente(cliente.get());
