@@ -6,6 +6,7 @@ import com.utn.supergym.dtos.cliente.ClienteUpdateRequest;
 import com.utn.supergym.dtos.contrato.ContratoAltaRequest;
 import com.utn.supergym.dtos.pagos.PagoAltaRequest;
 import com.utn.supergym.dtos.pagos.PagoResponse;
+import com.utn.supergym.dtos.pase.PaseResponse;
 import com.utn.supergym.entities.*;
 
 import java.math.BigDecimal;
@@ -135,5 +136,9 @@ public class TestData {
 
     public static ClienteResponse getClienteResponse() {
         return ClienteResponse.from(getCliente());
+    }
+
+    public static PaseResponse getPaseResponse() {
+        return PaseResponse.from(getPase());
     }
 }
