@@ -1,6 +1,8 @@
 package com.utn.supergym.services;
 
-import com.utn.supergym.dtos.cliente.*;
+import com.utn.supergym.dtos.cliente.ClienteAltaRequest;
+import com.utn.supergym.dtos.cliente.ClienteResponse;
+import com.utn.supergym.dtos.cliente.ClienteUpdateRequest;
 import com.utn.supergym.entities.Cliente;
 import com.utn.supergym.entities.EstadoUsuario;
 import com.utn.supergym.exceptions.AltaException;
@@ -17,10 +19,10 @@ import java.util.Optional;
 public class ClienteService {
     private final ClienteRepository clienteRepository;
 
-    public ClienteAltaResponse darDeAltaCliente(ClienteAltaRequest clienteAltaRequest) throws AltaException {
+    public ClienteResponse darDeAltaCliente(ClienteAltaRequest clienteAltaRequest) throws AltaException {
         validarExistenciaCliente(clienteAltaRequest);
         Cliente cliente = clienteRepository.save(clienteAltaRequest.toCliente());
-        return ClienteAltaResponse.from(cliente);
+        return ClienteResponse.from(cliente);
     }
 
     private void validarExistenciaCliente(ClienteAltaRequest clienteAltaRequest) throws AltaException {
@@ -47,19 +49,19 @@ public class ClienteService {
         return clienteAValidar.get();
     }
 
-    public ClienteConsultaResponse consultarCliente(Long idCliente) {
+    public ClienteResponse consultarCliente(Long idCliente) {
         Optional<Cliente> cliente = clienteRepository.findById(idCliente);
         if (cliente.isEmpty()) {
             throw new NoSuchElementException("No se encontró el cliente con id: " + idCliente);
         }
-        return ClienteConsultaResponse.from(cliente.get());
+        return ClienteResponse.from(cliente.get());
     }
 
-    public ClienteUpdateResponse actualizarEstado(ClienteUpdateRequest clienteUpdateRequest) throws BadRequestException {
+    public ClienteResponse actualizarEstado(ClienteUpdateRequest clienteUpdateRequest) throws BadRequestException {
         Cliente cliente = validarExistenciaYObtenerCliente(clienteUpdateRequest);
         cliente.setEstadoUsuario(EstadoUsuario.valueOf(clienteUpdateRequest.getEstadoUsuario()));
 
-        return ClienteUpdateResponse.from(clienteRepository.save(cliente));
+        return ClienteResponse.from(clienteRepository.save(cliente));
     }
 
 

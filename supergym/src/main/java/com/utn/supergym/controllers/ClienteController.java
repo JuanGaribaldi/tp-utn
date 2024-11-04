@@ -17,22 +17,22 @@ public class ClienteController {
     private final ClienteService clienteService;
 
     @PostMapping
-    public ResponseEntity<ClienteAltaResponse> darDeAltaCliente(@RequestBody ClienteAltaRequest cliente)
+    public ResponseEntity<ClienteResponse> darDeAltaCliente(@RequestBody ClienteAltaRequest cliente)
             throws AltaException {
-        ClienteAltaResponse response = clienteService.darDeAltaCliente(cliente);
+        ClienteResponse response = clienteService.darDeAltaCliente(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PatchMapping
-    public ResponseEntity<ClienteUpdateResponse> actualizarCliente(@RequestBody ClienteUpdateRequest clienteRequest) throws BadRequestException {
+    public ResponseEntity<ClienteResponse> actualizarCliente(@RequestBody ClienteUpdateRequest clienteRequest) throws BadRequestException {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(clienteService.actualizarEstado(clienteRequest));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteConsultaResponse> consultarCliente(@PathVariable("id") Long idCliente) {
-        ClienteConsultaResponse response = clienteService.consultarCliente(idCliente);
+    public ResponseEntity<ClienteResponse> consultarCliente(@PathVariable("id") Long idCliente) {
+        ClienteResponse response = clienteService.consultarCliente(idCliente);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
