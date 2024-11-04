@@ -4,6 +4,7 @@ import com.utn.supergym.dtos.cliente.ClienteAltaRequest;
 import com.utn.supergym.dtos.cliente.ClienteResponse;
 import com.utn.supergym.dtos.cliente.ClienteUpdateRequest;
 import com.utn.supergym.dtos.contrato.ContratoAltaRequest;
+import com.utn.supergym.dtos.contrato.ContratoConsultaResponse;
 import com.utn.supergym.dtos.pagos.PagoAltaRequest;
 import com.utn.supergym.dtos.pagos.PagoResponse;
 import com.utn.supergym.dtos.pase.PaseResponse;
@@ -132,6 +133,10 @@ public class TestData {
         pago.setFechaPago(FECHA);
         pago.setMontoPago(MONTO_PAGO);
         return pago;
+    }
+
+    public static ContratoConsultaResponse getContratoConsultaResponse() {
+        return ContratoConsultaResponse.from(getContrato());
     }
 
     public static ClienteResponse getClienteResponse() {
