@@ -1,6 +1,7 @@
 package com.utn.supergym.dtos.cliente;
 
 import com.utn.supergym.entities.Cliente;
+import com.utn.supergym.entities.EstadoUsuario;
 import com.utn.supergym.utils.TestData;
 import org.junit.jupiter.api.Test;
 
@@ -10,10 +11,12 @@ class ClienteAltaRequestTest {
 
     @Test
     void ejecutarToClienteRetornaUnCliente() {
-        ClienteAltaRequest request = TestData.getClienteAltaRequest();
-        Cliente cliente = request.toCliente();
-        assertEquals(TestData.NOMBRE_CLIENTE, cliente.getNombre());
-        assertEquals(TestData.APELLIDO_CLIENTE, cliente.getApellido());
-        assertEquals(TestData.DNI_CLIENTE, cliente.getDni());
+        ClienteAltaRequest clienteAltaRequest = TestData.getClienteAltaRequest();
+        Cliente clienteObtenido = clienteAltaRequest.toCliente();
+
+        assertEquals(TestData.NOMBRE_CLIENTE, clienteObtenido.getNombre());
+        assertEquals(TestData.APELLIDO_CLIENTE, clienteObtenido.getApellido());
+        assertEquals(TestData.DNI_CLIENTE, clienteObtenido.getDni());
+        assertEquals(EstadoUsuario.CREADO, clienteObtenido.getEstadoUsuario());
     }
 }
