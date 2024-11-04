@@ -22,6 +22,9 @@ public class ContratoConsultaResponse {
     private BigDecimal monto;
 
     public static ContratoConsultaResponse from(Contrato contrato) {
+        if (null == contrato) {
+            return null;
+        }
         return ContratoConsultaResponse.builder()
                 .id(contrato.getId())
                 .cliente(ClienteConsultaResponse.from(contrato.getCliente()))

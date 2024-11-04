@@ -21,6 +21,9 @@ public class  ClienteAltaResponse {
     private String estadoUsuario;
 
     public static ClienteAltaResponse from(Cliente cliente) {
+        if (null == cliente) {
+            return null;
+        }
         return ClienteAltaResponse.builder()
                 .id(cliente.getId())
                 .nombre(cliente.getNombre())

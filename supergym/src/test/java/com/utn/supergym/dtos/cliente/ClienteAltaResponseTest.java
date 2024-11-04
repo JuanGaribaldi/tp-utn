@@ -1,6 +1,7 @@
 package com.utn.supergym.dtos.cliente;
 
 import com.utn.supergym.entities.Cliente;
+import com.utn.supergym.entities.EstadoUsuario;
 import com.utn.supergym.utils.TestData;
 import org.junit.jupiter.api.Test;
 
@@ -18,5 +19,6 @@ class ClienteAltaResponseTest {
         assertEquals(TestData.NOMBRE_CLIENTE, clienteAltaResponse.getNombre());
         assertEquals(TestData.APELLIDO_CLIENTE, clienteAltaResponse.getApellido());
         assertEquals(TestData.DNI_CLIENTE, clienteAltaResponse.getDni());
+        assertEquals(EstadoUsuario.CREADO.toString(), clienteAltaResponse.getEstadoUsuario());
     }
 }

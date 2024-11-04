@@ -4,5 +4,5 @@ public enum EstadoUsuario {
     CREADO,
     HABILITADO,
     CON_DEUDA,
-    DADO_DE_BAJA,
+    DADO_DE_BAJA
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.utn.supergym.dtos.contrato.ContratoConsultaResponse;
 import com.utn.supergym.entities.Cliente;
+import com.utn.supergym.entities.EstadoUsuario;
 import lombok.Builder;
 import lombok.Data;
 
@@ -21,11 +22,15 @@ public class ClienteConsultaResponse {
     private String estadoUsuario;
 
     public static ClienteConsultaResponse from(Cliente cliente) {
+        if (null == cliente) {
+            return null;
+        }
         return ClienteConsultaResponse.builder()
                 .id(cliente.getId())
                 .nombre(cliente.getNombre())
                 .apellido(cliente.getApellido())
                 .dni(cliente.getDni())
+                .estadoUsuario(cliente.getEstadoUsuario().name())
                 .build();
     }
 }

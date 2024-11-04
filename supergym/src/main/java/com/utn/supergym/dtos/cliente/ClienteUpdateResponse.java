@@ -21,6 +21,9 @@ public class ClienteUpdateResponse {
     private String estadoUsuario;
 
     public static ClienteUpdateResponse from(Cliente cliente) {
+        if (null == cliente) {
+            return null;
+        }
         return ClienteUpdateResponse.builder()
                 .id(cliente.getId())
                 .nombre(cliente.getNombre())
