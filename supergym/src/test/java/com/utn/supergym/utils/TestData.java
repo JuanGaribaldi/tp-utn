@@ -33,8 +33,13 @@ public class TestData {
 
 
     //datos pase
+    public static final String TIPO_PASE_CLASSIC = "classic";
+    public static final String TIPO_PASE_BLACK = "black";
+    public static final String TIPO_PASE_PLATINUM = "platinum";
+
 
     //datos pagos
+    public static final BigDecimal MONTO_PAGO = BigDecimal.TEN;
 
     //Mensajes de error
     public static final String ERROR_CLIENTE_EXISTENTE = "El cliente ya existe en el sistema.";
@@ -123,7 +128,7 @@ public class TestData {
         Pago pago = new Pago();
         pago.setId(id);
         pago.setFechaPago(FECHA);
-        pago.setMontoPago(BigDecimal.TEN);
+        pago.setMontoPago(MONTO_PAGO);
         return pago;
     }
 }

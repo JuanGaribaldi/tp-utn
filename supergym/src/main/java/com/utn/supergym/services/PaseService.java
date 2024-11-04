@@ -18,7 +18,7 @@ import java.util.Optional;
 public class PaseService {
 
     @Autowired
-    private PaseRepository paseRepository;
+    private final PaseRepository paseRepository;
 
     public PaseResponse consultarPase(Long idPase) {
         Optional<Pase> pase = paseRepository.findById(idPase);
